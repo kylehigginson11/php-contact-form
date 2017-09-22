@@ -1,0 +1,33 @@
+.contact-div {
+	background-color: #B4F1FF;
+	border: solid 1px #252291;
+}
+
+.contact-div input {
+    background-color: transparent;
+    border: #2EC2FF 1px solid;
+    color: white;
+}
+
+.contact-div input::placeholder {
+    color: black;
+}
+
+.contact-div input:focus {
+    background-color: transparent;
+	border: #2EC2FF 1px solid;
+}
+
+.contact-div button {
+    background-color: #2EC2FF;
+    color: white;
+    width: 150px;
+}
+
+.contact-div h1{
+	color: #687779;
+}
+
+.hidden{
+	display: none;
+}

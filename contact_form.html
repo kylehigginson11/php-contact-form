@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="contact_form.css">
+  </head>
+  <body>
+    <div class="container">
+		<div class="row">
+			<div class="col-md-6 contact-div">
+			    <h1>CONTACT</h1>
+			    <h1>US</h1>
+			     <form role="form" method="post" id="contactForm" action="email.php">
+			          <div class="form-group" align="center">
+			               <input type="text" class="form-control" id="name" name="name" placeholder="Name" required><br>
+			               <input type="email" class="form-control" id="email" name="email" placeholder="Email" required><br>
+			               <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number" required><br>
+			               <button type="submit" id="submit" name="submit" class="btn btn-info">Submit!</button>
+			           </div>
+			        </form>
+			        <div id="msgSubmit" class="h4 text-center hidden">Message Submitted!</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	
+	<script>
+	
+		$("#contactForm").submit(function (event) {
+		    // cancels the form submission
+		    event.preventDefault();
+		    submitForm();
+		});
+
+		function submitForm() {
+		    // Initiate Variables With Form Content
+		    var name = $("#name").val();
+		    var email = $("#email").val();
+		    var phone = $("#phone").val();
+
+		    $.ajax({
+		        type: "POST",
+		        url: "email.php",
+		        data: "name=" + name + "&email=" + email + "&phone=" + phone,
+		        success: function (text) {
+		            if (text == 'success') {
+		                document.getElementById("msgSubmit").innerHTML = "Message Submitted!";
+		                $("#msgSubmit").removeClass("hidden");
+		            }
+		            else {
+		                document.getElementById("msgSubmit").innerHTML = "Message failed to send.";
+		                $("#msgSubmit").removeClass("hidden");
+		            }
+		        }
+		    });
+		}
+		
+	</script>
+	
+  </body>
+</html>
